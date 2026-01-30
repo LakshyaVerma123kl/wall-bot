@@ -35,7 +35,7 @@ The system is architected to handle high-concurrency demands through optimized d
 1.  **Clone the Repository**
 
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/wall-bit-assignment.git](https://github.com/YOUR_USERNAME/wall-bit-assignment.git)
+    git clone [https://github.com/LakshyaVerma123kl/wall-bot](https://github.com/LakshyaVerma123kl/wall-bot)
     cd wall-bit-assignment
     ```
 
@@ -63,3 +63,7 @@ The project includes a `pytest` suite validating CRUD operations, path generatio
 ```bash
 python -m pytest -v -s
 ```
+
+## 🎥 Video Walkthrough
+
+[\[Link to your video walkthrough here\]](https://www.loom.com/share/b4eff89132944d71a68909b9a2cf0c12)
