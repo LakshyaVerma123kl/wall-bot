@@ -1,0 +1,14 @@
+2026-01-30 13:42:12,038 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:42:12,848 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: POST | Status: 200 | Time: 809.08ms
+2026-01-30 13:42:28,687 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.59ms
+2026-01-30 13:42:34,587 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 45.13ms
+2026-01-30 13:42:41,306 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:42:52,087 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:43:04,252 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:43:10,406 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:43:19,209 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:44:31,276 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:47:06,700 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:47:07,279 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: POST | Status: 200 | Time: 575.83ms
+2026-01-30 13:47:25,562 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: OPTIONS | Status: 200 | Time: 0.00ms
+2026-01-30 13:47:25,999 - RobotControl - INFO - Path: /api/v1/calculate-path | Method: POST | Status: 200 | Time: 433.61ms
