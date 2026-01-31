@@ -64,6 +64,11 @@ The project includes a `pytest` suite validating CRUD operations, path generatio
 python -m pytest -v -s
 ```
 
+## Frontend Link
+
+[\[Link to frontend\]]
+(http://127.0.0.1:8000/)
+
 ## 🎥 Video Walkthrough
 
 [\[Link to your video walkthrough here\]](https://www.loom.com/share/b4eff89132944d71a68909b9a2cf0c12)
