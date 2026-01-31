@@ -5,7 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import planning
 from app.db import models
 from app.db.session import engine
-
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -54,7 +55,7 @@ async def log_requests(request: Request, call_next):
 
 
 app.include_router(planning.router, prefix="/api/v1", tags=["planning"])
-
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 @app.get("/")
 def read_root():
-    return {"message": "Robot Control System Online"}
+    return FileResponse('frontend/index.html')
