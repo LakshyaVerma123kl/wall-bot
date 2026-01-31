@@ -10,7 +10,9 @@
         --danger: #dc2626;
         --success: #16a34a;
         --bg: #f8fafc;
+        --sidebar-w: 340px;
       }
+
       body {
         font-family: "Segoe UI", system-ui, sans-serif;
         margin: 0;
@@ -18,40 +20,114 @@
         height: 100vh;
         background: var(--bg);
         color: #334155;
+        overflow: hidden;
       }
 
-      /* Sidebar Styles */
+      /* --- RESPONSIVE SIDEBAR --- */
       .sidebar {
-        width: 320px;
+        width: var(--sidebar-w);
+        min-width: var(--sidebar-w);
         background: white;
         padding: 25px;
         border-right: 1px solid #e2e8f0;
         display: flex;
         flex-direction: column;
         box-shadow: 4px 0 15px rgba(0, 0, 0, 0.03);
+        z-index: 10;
         overflow-y: auto;
+        transition: transform 0.3s ease;
       }
+
+      /* --- RESPONSIVE MAIN AREA --- */
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #f1f5f9;
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 20px 20px;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .log-wrapper {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+      }
+
+      #log-container {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Consolas", "Monaco", monospace;
+        font-size: 0.85rem;
+        height: 250px;
+        overflow-y: auto;
+        border: 1px solid #334155;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .log-entry {
+        margin-bottom: 6px;
+        padding-left: 8px;
+        border-left: 3px solid transparent;
+      }
+      .log-ts {
+        color: #64748b;
+        margin-right: 8px;
+        font-size: 0.75rem;
+      }
+
+      /* Log Colors */
+      .log-info {
+        border-left-color: #3b82f6;
+      }
+      .log-success {
+        border-left-color: #22c55e;
+        color: #86efac;
+      }
+      .log-warn {
+        border-left-color: #f59e0b;
+        color: #fcd34d;
+      }
+      .log-error {
+        border-left-color: #ef4444;
+        color: #fca5a5;
+      }
+
+      /* --- UI ELEMENTS --- */
       h2 {
         color: #0f172a;
         margin-top: 0;
         font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
       h3 {
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: #64748b;
         margin-top: 20px;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
       }
 
       .input-group {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       label {
         display: block;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 600;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         color: #475569;
       }
       input {
@@ -59,9 +135,8 @@
         padding: 10px;
         border: 1px solid #cbd5e1;
         border-radius: 6px;
-        font-size: 1rem;
+        font-size: 0.95rem;
         box-sizing: border-box;
-        transition: border-color 0.2s;
       }
       input:focus {
         outline: none;
@@ -75,13 +150,16 @@
         border-radius: 6px;
         font-weight: 600;
         cursor: pointer;
-        transition:
-          transform 0.1s,
-          opacity 0.2s;
         margin-top: 10px;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+      }
+      button:hover {
+        filter: brightness(110%);
+        transform: translateY(-1px);
       }
       button:active {
-        transform: scale(0.98);
+        transform: translateY(0);
       }
       .btn-primary {
         background: var(--primary);
@@ -92,59 +170,40 @@
         color: white;
         margin-top: 15px;
       }
-      .btn-primary:hover,
-      .btn-success:hover {
-        opacity: 0.9;
-      }
 
-      /* Logs Panel */
-      #log-container {
-        margin-top: auto;
-        background: #1e293b;
-        color: #a5b4fc;
-        padding: 15px;
-        border-radius: 8px;
-        font-family: "Courier New", monospace;
-        font-size: 0.8rem;
-        height: 200px;
-        overflow-y: auto;
-        border: 1px solid #334155;
-      }
-      .log-entry {
-        margin-bottom: 6px;
-        border-bottom: 1px solid #334155;
-        padding-bottom: 2px;
-      }
-      .log-ts {
-        color: #64748b;
-        margin-right: 8px;
-      }
-
-      .main-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
       canvas {
         background: white;
         border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        max-height: 80vh;
       }
-      .legend {
-        margin-top: 15px;
-        display: flex;
-        gap: 20px;
-        font-size: 0.9rem;
-      }
-      .dot {
-        height: 10px;
-        width: 10px;
-        display: inline-block;
-        border-radius: 50%;
-        margin-right: 5px;
+
+      /* --- RESPONSIVE MEDIA QUERIES --- */
+      @media (max-width: 900px) {
+        body {
+          flex-direction: column;
+          height: auto;
+          overflow: auto;
+        }
+        .sidebar {
+          width: 100%;
+          min-width: 0;
+          height: auto;
+          box-shadow: none;
+          border-right: none;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        .main-content {
+          height: 600px;
+          padding: 10px;
+        }
+        .log-wrapper {
+          margin-top: 20px;
+        }
+        #log-container {
+          height: 150px;
+        }
       }
     </style>
   </head>
@@ -152,32 +211,36 @@
     <div class="sidebar">
       <h2>🤖 Wall-Bit Control</h2>
 
-      <h3>Wall Dimensions</h3>
+      <h3>Wall Config</h3>
       <div class="input-group">
-        <label>Width (meters)</label>
+        <label>Width (m)</label>
         <input type="number" id="wallW" value="5" step="0.1" />
       </div>
       <div class="input-group">
-        <label>Height (meters)</label>
+        <label>Height (m)</label>
         <input type="number" id="wallH" value="5" step="0.1" />
       </div>
 
-      <h3>Obstacle Configuration</h3>
-      <div class="input-group">
-        <label>Obs X (m)</label>
-        <input type="number" id="obsX" value="2" />
+      <h3>Obstacle Config</h3>
+      <div style="display: flex; gap: 10px">
+        <div class="input-group" style="flex: 1">
+          <label>X (m)</label>
+          <input type="number" id="obsX" value="2" />
+        </div>
+        <div class="input-group" style="flex: 1">
+          <label>Y (m)</label>
+          <input type="number" id="obsY" value="2" />
+        </div>
       </div>
-      <div class="input-group">
-        <label>Obs Y (m)</label>
-        <input type="number" id="obsY" value="2" />
-      </div>
-      <div class="input-group">
-        <label>Obs Width (m)</label>
-        <input type="number" id="obsW" value="1" />
-      </div>
-      <div class="input-group">
-        <label>Obs Height (m)</label>
-        <input type="number" id="obsH" value="1" />
+      <div style="display: flex; gap: 10px">
+        <div class="input-group" style="flex: 1">
+          <label>W (m)</label>
+          <input type="number" id="obsW" value="1" />
+        </div>
+        <div class="input-group" style="flex: 1">
+          <label>H (m)</label>
+          <input type="number" id="obsH" value="1" />
+        </div>
       </div>
 
       <button class="btn-primary" onclick="generatePath()">
@@ -187,35 +250,38 @@
         ▶ Play Simulation
       </button>
 
-      <h3>System Logs</h3>
-      <div id="log-container">
-        <div class="log-entry">System Ready...</div>
+      <div class="log-wrapper">
+        <label
+          style="
+            color: #64748b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          "
+          >System Telemetry</label
+        >
+        <div id="log-container">
+          <div class="log-entry log-info">
+            <span class="log-ts">[INIT]</span> System Ready...
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="main-content">
       <canvas id="simCanvas" width="800" height="600"></canvas>
-      <div class="legend">
-        <span
-          ><span
-            class="dot"
-            style="background: #e2e8f0; border: 1px solid #94a3b8"
-          ></span
-          >Wall</span
-        >
-        <span
-          ><span
-            class="dot"
-            style="
-              background: rgba(220, 38, 38, 0.2);
-              border: 1px solid #dc2626;
-            "
-          ></span
-          >Obstacle</span
-        >
-        <span
-          ><span class="dot" style="background: #2563eb"></span>Robot Path</span
-        >
+      <div
+        style="
+          margin-top: 15px;
+          font-size: 0.85rem;
+          color: #64748b;
+          display: flex;
+          gap: 15px;
+        "
+      >
+        <span><span style="color: #94a3b8">●</span> Wall</span>
+        <span><span style="color: #dc2626">●</span> Obstacle</span>
+        <span><span style="color: #2563eb">●</span> Trajectory</span>
       </div>
     </div>
 
@@ -229,13 +295,17 @@
       let simulationInterval = null;
       let scale = 100;
 
-      function log(message) {
+      function log(msg, type = "info") {
         const container = document.getElementById("log-container");
-        const time = new Date().toLocaleTimeString("en-US", { hour12: false });
-        const entry = document.createElement("div");
-        entry.className = "log-entry";
-        entry.innerHTML = `<span class="log-ts">[${time}]</span>${message}`;
-        container.prepend(entry);
+        const now = new Date().toLocaleTimeString("en-US", {
+          hour12: false,
+          fractionalSecondDigits: 2,
+        });
+        const div = document.createElement("div");
+        div.className = `log-entry log-${type}`;
+        div.innerHTML = `<span class="log-ts">[${now}]</span> ${msg}`;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
       }
 
       async function generatePath() {
@@ -252,15 +322,17 @@
           height: parseFloat(document.getElementById("obsH").value),
         };
 
-        const scaleX = (canvas.width - PADDING * 2) / w;
-        const scaleY = (canvas.height - PADDING * 2) / h;
-        scale = Math.min(scaleX, scaleY);
+        scale = Math.min(
+          (canvas.width - PADDING * 2) / w,
+          (canvas.height - PADDING * 2) / h,
+        );
 
         drawStaticElements(w, h, [obs]);
-        log(`Requesting path for ${w}x${h}m wall...`);
+        log("Sending request to backend...", "warn");
 
         try {
-          const response = await fetch(`${API_URL}/calculate-path`, {
+          const start = performance.now();
+          const res = await fetch(`${API_URL}/calculate-path`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -270,16 +342,16 @@
             }),
           });
 
-          if (!response.ok) throw new Error("API Error");
+          if (!res.ok) throw new Error("API Error");
 
-          const data = await response.json();
+          const data = await res.json();
           currentPath = data.path;
+          const serverTime = res.headers.get("X-Process-Time") || "0";
 
-          const serverTime = response.headers.get("X-Process-Time") || "N/A";
-          log(`Path found! ${currentPath.length} waypoints.`);
-          log(`Server Compute Time: ${serverTime}ms`);
-        } catch (err) {
-          log(`❌ Error: ${err.message}. Is backend running?`);
+          log(`Path received: ${currentPath.length} points`, "success");
+          log(`Server CPU Time: ${serverTime}ms`, "info");
+        } catch (e) {
+          log(`Connection Failed: ${e.message}`, "error");
         }
       }
 
@@ -291,41 +363,24 @@
         ctx.strokeRect(PADDING, PADDING, w * scale, h * scale);
 
         obstacles.forEach((o) => {
-          ctx.fillStyle = "rgba(220, 38, 38, 0.2)";
+          const x = PADDING + o.x * scale,
+            y = PADDING + o.y * scale;
+          ctx.fillStyle = "rgba(220, 38, 38, 0.1)";
           ctx.strokeStyle = "#dc2626";
-          ctx.fillRect(
-            PADDING + o.x * scale,
-            PADDING + o.y * scale,
-            o.width * scale,
-            o.height * scale,
-          );
-          ctx.strokeRect(
-            PADDING + o.x * scale,
-            PADDING + o.y * scale,
-            o.width * scale,
-            o.height * scale,
-          );
-
-          ctx.fillStyle = "#dc2626";
-          ctx.font = "12px sans-serif";
-          ctx.fillText(
-            "OBSTACLE",
-            PADDING + o.x * scale + 5,
-            PADDING + o.y * scale + 15,
-          );
+          ctx.fillRect(x, y, o.width * scale, o.height * scale);
+          ctx.strokeRect(x, y, o.width * scale, o.height * scale);
         });
       }
 
       function startSimulation() {
-        if (currentPath.length === 0) return log("⚠️ Calculate path first!");
+        if (!currentPath.length) return log("No path to simulate", "error");
 
-        log("🚀 Starting autonomous sequence...");
+        log("Starting coverage sequence...", "info");
         let i = 0;
-
         ctx.beginPath();
+        ctx.strokeStyle = "#2563eb";
         ctx.lineWidth = 4;
         ctx.lineCap = "round";
-        ctx.strokeStyle = "#2563eb";
         ctx.moveTo(
           PADDING + currentPath[0].x * scale,
           PADDING + currentPath[0].y * scale,
@@ -334,21 +389,37 @@
         simulationInterval = setInterval(() => {
           if (i >= currentPath.length - 1) {
             clearInterval(simulationInterval);
-            log("✅ Coverage Complete.");
+            log("Mission Complete.", "success");
             return;
           }
 
           const p1 = currentPath[i];
           const p2 = currentPath[i + 1];
+          const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
 
-          ctx.beginPath();
-          ctx.moveTo(PADDING + p1.x * scale, PADDING + p1.y * scale);
-          ctx.lineTo(PADDING + p2.x * scale, PADDING + p2.y * scale);
-          ctx.stroke();
+          if (dist > 0.6) {
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(37, 99, 235, 0.3)";
+            ctx.setLineDash([5, 5]);
+            ctx.moveTo(PADDING + p1.x * scale, PADDING + p1.y * scale);
+            ctx.lineTo(PADDING + p2.x * scale, PADDING + p2.y * scale);
+            ctx.stroke();
 
-          if (Math.abs(p2.y - p1.y) > 0.1 && i % 10 === 0) {
+            ctx.beginPath();
+            ctx.setLineDash([]);
+            ctx.strokeStyle = "#2563eb";
+            ctx.moveTo(PADDING + p2.x * scale, PADDING + p2.y * scale);
+            log(
+              `Obstacle Jump: [${p1.x.toFixed(1)},${p1.y.toFixed(1)}] -> [${p2.x.toFixed(1)},${p2.y.toFixed(1)}]`,
+              "warn",
+            );
+          } else {
+            ctx.lineTo(PADDING + p2.x * scale, PADDING + p2.y * scale);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(PADDING + p2.x * scale, PADDING + p2.y * scale);
           }
-
           i++;
         }, 10);
       }
